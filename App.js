@@ -1,21 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { Component } from 'react';  
+import { StyleSheet,View,Text,StatusBar} from 'react-native';  
+  
+export default class FlexDirectionBasics extends Component {  
+    render() {  
+        return (  
+          
+            <View style={styles.body}> 
+            <StatusBar
+              backgroundColor='red'
+            >
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+            </StatusBar>
+             
+          </View>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+        );  
+    }  
+}  
+const styles = StyleSheet.create({  
+    body:{
+      flex:1
+    }
+  });  
