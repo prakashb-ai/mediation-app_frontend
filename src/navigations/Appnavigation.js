@@ -14,7 +14,7 @@ const Appnavigation = () =>{
                     headerShown: false
                 }}>
                 <Stack.Screen name="Home" component={Home}/>
-                <Stack.Screen name="Wellcome" component={Welcomepage}/>
+                <Stack.Screen name="Welcomepage" component={Welcomepage}/>
             </Stack.Navigator>
         </NavigationContainer>
     )

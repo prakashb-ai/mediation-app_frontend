@@ -20,7 +20,7 @@ const Home = ({navigation}) => {
 
         <View style={styles.title}>
                 <TouchableOpacity
-                    onPress={()=>navigation.navigate('Wellcome')}
+                    onPress={()=>navigation.navigate('Welcomepage')}
                     
                 >
                      <Text style={styles.text}>

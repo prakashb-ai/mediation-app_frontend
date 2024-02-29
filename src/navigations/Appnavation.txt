@@ -1,0 +1,50 @@
+import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
+import Welcomepage from '../screens/Welcomepage'
+import Home from '../screens/Home'
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+const Tab = createBottomTabNavigator();
+
+const App = () => {
+    
+
+  return (
+    <NavigationContainer>
+      <Tab.Navigator
+        
+        tabBarOptions={{
+          activeTintColor: 'tomato',
+          inactiveTintColor: 'gray',
+        }}
+
+      >
+        <Tab.Screen 
+          name=" " 
+          component={Home} 
+          options={({ route }) => ({
+            tabBarIcon: ({ color, size }) => null, // Hide the tab icon
+            tabBarVisible: route.name === " " ? false : true, // Hide the bottom tab bar for the Home screen
+          })}
+          listeners={({ navigation }) => ({
+            tabPress: () => {
+              navigation.navigate('welcomepage');
+            }
+          })}
+        />
+        <Tab.Screen 
+          name="welcomepage" 
+          component={Welcomepage} 
+          options={{ headerShown:false ,
+            tabBarIcon: ({ color, size }) => (
+                <Icon name="search" size={size} color={color} />
+            ),}} // Hide the label for Welcomepage screen
+
+        />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default App;
