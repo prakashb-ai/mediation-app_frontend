@@ -1,4 +1,4 @@
-import { View, Text,StyleSheet,Image,Dimensions, StatusBar, TextInput,TouchableOpacity ,ImageBackground} from 'react-native'
+import { View, Text,StyleSheet,Image,Dimensions, StatusBar, TextInput,TouchableOpacity ,ImageBackground,ScrollView} from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -6,6 +6,7 @@ const {width , height } = Dimensions.get('window')
 const  Welcomepage= ({navigation}) => {
   return (
     
+    <ScrollView>
     <View style={styles.container}>
       <View>
           {/* image */}
@@ -31,7 +32,7 @@ const  Welcomepage= ({navigation}) => {
       </View>
 
 
-      <View style={styles.categoryContainer}>
+      <View style={styles.moodContainer}>
           <View style={styles.popular}>
             <Text style={styles.popularheading}>
               Mood
@@ -80,6 +81,7 @@ const  Welcomepage= ({navigation}) => {
 
 
     </View>
+    </ScrollView>
   )
 }
 
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         marginTop: height/2.81,
         margin:11,
-        backgroundColor:'#E8008B',
+        backgroundColor:'white',
         borderRadius:16,
 
       },
@@ -114,13 +116,13 @@ const styles = StyleSheet.create({
       searchs:{
           left:width/28,
           width:width/10,
-          top:width/73
-
+          top:width/73,
+          
       },
       
       searchbar:{
       },
-      categoryContainer:{
+      moodContainer:{
         margin:height/85
       },
       popular:{
