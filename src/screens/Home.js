@@ -1,9 +1,13 @@
-import { View, Text,Image ,Dimensions,StyleSheet, TouchableOpacity, ImageBackground} from 'react-native'
+import { View, Text,Image ,Dimensions,StyleSheet, TouchableOpacity} from 'react-native'
 import React from 'react'
+
+
 const { width, height } = Dimensions.get('window') || {width:0, height:0}
 
 
-const Home = () => {
+
+const Home = ({navigation}) => {
+
 
   return (
     <View style={styles.container}>
@@ -15,7 +19,10 @@ const Home = () => {
         </View>
 
         <View style={styles.title}>
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={()=>navigation.navigate('Wellcome')}
+                    
+                >
                      <Text style={styles.text}>
                         Get started
                      </Text>
@@ -28,7 +35,10 @@ const Home = () => {
 
 const styles = StyleSheet.create({
         container:{
-           
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'white'
         },
 
         vedio:{
