@@ -3,10 +3,17 @@ import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const {width , height } = Dimensions.get('window')
+console.log("width" + width)
+console.log(height)
+
 const  Welcomepage= ({navigation}) => {
   return (
+
+    <ScrollView
+      showsVerticalScrollIndicator={false} // This property hides the vertical scroll bar
+      contentContainerStyle={{ flexGrow: 1 }} // Ensure content fills the ScrollView
+    >
     
-    <ScrollView>
     <View style={styles.container}>
       <View>
           {/* image */}
@@ -75,6 +82,30 @@ const  Welcomepage= ({navigation}) => {
           </View>
 
           
+       </View>
+
+
+       <View style={styles.categoryContainer}>
+
+       <Text style={styles.categorytext}>Category</Text>
+
+       
+
+        <View style={styles.environment}>
+          <ImageBackground source={require('../../vedios/night.jpeg')} style={styles.nightimage}/>
+
+        </View>
+        
+
+        <View style={styles.chakars}>
+
+        </View>
+        
+        
+        <Text style={styles.viewallcategory}>View all...</Text>
+        
+        
+
        </View>
 
        
@@ -194,7 +225,36 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignContent:'center',
         color:'white'
-      }
+      },
+
+      categoryContainer:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        marginTop: -height/3,
+        margin:23
+      },
+      categorytext:{
+        fontSize:20,
+        fontWeight:'bold',
+
+      },
+      viewallcategory:{
+          fontSize:20,
+          fontWeight:'bold',
+          color:'green'
+      },
+      environment:{
+
+      },
+      chakars:{ 
+
+      },
+
+      s:{
+         width:width*0.6,
+         height:height/5,
+         borderRadius:50
+      },
 
 
 })

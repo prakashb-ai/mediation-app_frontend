@@ -7,8 +7,9 @@ import Appnavigation from './src/navigations/Appnavigation'
 class App extends Component {
   render() {
     return (
+      <View style={styles.container}>
         <Appnavigation/>
-        
+        </View>
     );
   }
 }
