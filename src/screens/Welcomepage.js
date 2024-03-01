@@ -10,8 +10,8 @@ const  Welcomepage= ({navigation}) => {
   return (
 
     <ScrollView
-      showsVerticalScrollIndicator={false} // This property hides the vertical scroll bar
-      contentContainerStyle={{ flexGrow: 1 }} // Ensure content fills the ScrollView
+      showsVerticalScrollIndicator={false} 
+      contentContainerStyle={{ flexGrow: 1 }} 
     >
     
     <View style={styles.container}>
@@ -85,33 +85,58 @@ const  Welcomepage= ({navigation}) => {
        </View>
 
 
-       <View style={styles.categoryContainer}>
+      <View style={styles.categoryContainer}>
 
-       <Text style={styles.categorytext}>Category</Text>
+        <View style={styles.category}>
 
-       
-
-        <View style={styles.environment}>
-          <ImageBackground source={require('../../vedios/night.jpeg')} style={styles.nightimage}/>
+              <Text style={styles.categorytext}>Category</Text>
 
         </View>
-        
+        <TouchableOpacity
+          onPress={()=>navigation.navigate('viewallcatgeory')}
+        >
 
-        <View style={styles.chakars}>
+               <Text style={styles.viewallcategory}>View all...</Text>
+        </TouchableOpacity>
+        
+      </View>
 
-        </View>
-        
-        
-        <Text style={styles.viewallcategory}>View all...</Text>
-        
-        
 
+
+  <ScrollView horizontal={true}>
+      <View style={styles.boxcategory}>
+          <View style={styles.box1category}>
+               <ImageBackground source={require('../../vedios/night.jpeg')} style={styles.categoryimage} resizeMode='cover' 
+               imageStyle={{ borderRadius: 24 }}>
+                      <Text style={styles.categorynamestext}>environment</Text>
+                </ImageBackground>
+      </View>
+
+      <View style={styles.box2category}>
+                <ImageBackground source={require('../../vedios/startpage.png')} style={styles.categoryimage} resizeMode='cover'  imageStyle={{ borderRadius: 24 }}>
+                  
+                       <Text style={styles.categorynamestext}>environment</Text>
+                </ImageBackground>
+      </View>
+
+      <View style={styles.box3category}>
+                <ImageBackground source={require('../../vedios/depression.jpeg')} style={styles.categoryimage} resizeMode='cover'  imageStyle={{ borderRadius: 24 }}>
+                       <Text style={styles.categorynamestext}>environment</Text>
+                </ImageBackground>
+      </View>
+
+      <View style={styles.box4category}>
+                <ImageBackground source={require('../../vedios/backview.jpg')} style={styles.categoryimage} resizeMode='cover'  imageStyle={{ borderRadius: 24 }}>
+                       <Text style={styles.categorynamestext}>environment</Text>
+                </ImageBackground>
+      </View>
+
+      
+      </View>
+
+         </ScrollView>
+        
        </View>
-
-       
-
-
-    </View>
     </ScrollView>
   )
 }
@@ -231,7 +256,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-between',
         marginTop: -height/3,
-        margin:23
+        margin: 15
       },
       categorytext:{
         fontSize:20,
@@ -243,18 +268,48 @@ const styles = StyleSheet.create({
           fontWeight:'bold',
           color:'green'
       },
-      environment:{
 
-      },
-      chakars:{ 
+    boxcategory:{
+        flexDirection:'row',
+        justifyContent:'space-between',
 
-      },
+    },
+    box1category:{
+        marginRight:width/40
 
-      s:{
-         width:width*0.6,
-         height:height/5,
-         borderRadius:50
-      },
+    },
+    box2category:{
+      marginRight:width/40
+
+   },
+   box3category:{
+    marginRight:width/40
+
+  },
+  box4category:{
+    marginRight:width/40
+
+  },
+    
+  categoryimage:{
+      width :width*0.7,
+      height:height/5,
+      left:width/65,
+
+  },
+  categorynamestext:{
+        fontSize:30,
+        textAlign:'center',
+        textAlignVertical:'center',
+        alignContent: 'center',
+        alignItems: 'center',
+        flex:1,
+        color:'white'
+        
+  },
+    
+     
+     
 
 
 })
