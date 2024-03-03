@@ -1,5 +1,5 @@
 import { View, Text,Image ,Dimensions,StyleSheet, TouchableOpacity} from 'react-native'
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 
 
 const { width, height } = Dimensions.get('window') || {width:0, height:0}
@@ -8,7 +8,28 @@ const { width, height } = Dimensions.get('window') || {width:0, height:0}
 
 const Home = ({navigation}) => {
 
+        const [started , setStarted] = useState('')
+        
+        const fetchData = async ()=>{
+                const response = await fetch('http://localhost:8000/api/post/getstarted',{
+                    method:'POST',
+                    headers:{
+                        'Content-Type':'application/json'
+                    },
+                    body:JSON.stringify({
+                        User_id: 'User_id'
+                    }),
+                });
+                const data = await response.json()
+                console.log('data:',data)
+                setStarted(data)
+                
+            }
+        useEffect(()=>{
+            fetchData()
+        },[])
 
+        
   return (
     <View style={styles.container}>
         <View>
@@ -20,7 +41,10 @@ const Home = ({navigation}) => {
 
         <View style={styles.title}>
                 <TouchableOpacity
-                    onPress={()=>navigation.navigate('Welcomepage')}
+                    onPress={(fetchData)=>
+                        navigation.navigate('Welcomepage')}
+                        fetchData
+                    
                     
                 >
                      <Text style={styles.text}>

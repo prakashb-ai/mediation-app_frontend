@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
       popular:{
           flexDirection:'row',
           justifyContent:'space-between',
-          marginLeft:width/20,
+          marginLeft:width/26,
           marginRight:10
       },
       popularheading:{
@@ -192,14 +192,16 @@ const styles = StyleSheet.create({
         fontWeight:'bold'
       },
       viewall:{
-        fontSize:20,
+        fontSize:18,
         color:'green',
-        fontWeight:'bold'
+        fontWeight:'bold',
+        color:'gray'
       },
 
       box:{
         flexDirection:'row',
         height:height/2,
+        
        
       },
       box1:{
@@ -256,7 +258,7 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-between',
         marginTop: -height/3,
-        margin: 15
+        margin: 18
       },
       categorytext:{
         fontSize:20,
@@ -264,9 +266,9 @@ const styles = StyleSheet.create({
 
       },
       viewallcategory:{
-          fontSize:20,
+          fontSize:18,
           fontWeight:'bold',
-          color:'green'
+          color:'gray'
       },
 
     boxcategory:{
