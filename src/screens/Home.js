@@ -11,13 +11,14 @@ const Home = ({navigation}) => {
         const [started , setStarted] = useState('')
         
         const fetchData = async ()=>{
+
                 const response = await fetch('http://localhost:8000/api/post/getstarted',{
                     method:'POST',
                     headers:{
                         'Content-Type':'application/json'
                     },
                     body:JSON.stringify({
-                        User_id: 'User_id'
+                        User_id: 'User_id',
                     }),
                 });
                 const data = await response.json()
