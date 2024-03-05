@@ -2,6 +2,8 @@ import { View, Text,StyleSheet,Image,Dimensions, StatusBar, TextInput,TouchableO
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+
+
 const {width , height } = Dimensions.get('window')
 console.log("width" + width)
 console.log(height)
@@ -135,7 +137,12 @@ const  Welcomepage= ({navigation}) => {
       </View>
 
          </ScrollView>
-        
+
+
+         
+
+
+                
        </View>
     </ScrollView>
   )
