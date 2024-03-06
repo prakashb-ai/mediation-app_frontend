@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, TouchableOpacity, Text, View} from 'react-native';
-import Home from '../mediation_app/src/screens/Home'
 import Appnavigation from './src/navigations/Appnavigation'
-
+import Reels from './src/screens/Reels';
 
 class App extends Component {
   render() {

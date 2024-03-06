@@ -1,5 +1,5 @@
-import { View, Text,StyleSheet,Image,Dimensions, StatusBar, TextInput,TouchableOpacity ,ImageBackground,ScrollView} from 'react-native'
-import React from 'react'
+import { View, Text,StyleSheet,Image,Dimensions, StatusBar, TextInput,TouchableOpacity ,ImageBackground,ScrollView,FlatList} from 'react-native'
+import React, { useState,useEffect } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
@@ -11,11 +11,7 @@ console.log(height)
 const  Welcomepage= ({navigation}) => {
   return (
 
-    <ScrollView
-      showsVerticalScrollIndicator={false} 
-      contentContainerStyle={{ flexGrow: 1 }} 
-    >
-    
+    <ScrollView>
     <View style={styles.container}>
       <View>
           {/* image */}
@@ -139,12 +135,9 @@ const  Welcomepage= ({navigation}) => {
          </ScrollView>
 
 
-         
+     </View>
 
-
-                
-       </View>
-    </ScrollView>
+      </ScrollView>
   )
 }
 
