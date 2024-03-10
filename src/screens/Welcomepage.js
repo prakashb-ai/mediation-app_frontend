@@ -11,7 +11,10 @@ console.log(height)
 const  Welcomepage= ({navigation}) => {
   return (
 
-    <ScrollView>
+    <ScrollView
+    showsVerticalScrollIndicator={false}
+    showsHorizontalScrollIndicator={false}
+    >
     <View style={styles.container}>
       <View>
           {/* image */}
@@ -54,11 +57,11 @@ const  Welcomepage= ({navigation}) => {
 
           <View style={styles.box}>
             <View style={styles.box1}>
-                <Text style={styles.names}>Stress&#x1F62C;</Text>
+                <Text style={styles.names}>Stress</Text>
                    
             </View>
               <View style={styles.box2}>
-                <Text style={styles.names}>Angry &#x1F620; </Text>
+                <Text style={styles.names}>Angry </Text>
                </View>
 
           
@@ -69,11 +72,11 @@ const  Welcomepage= ({navigation}) => {
           
           <View style={styles.box3}>
             {/*image1 */}
-                <Text style={styles.names}>Depression &#x1F61E;</Text>
+                <Text style={styles.names}>Depression</Text>
             </View>
             <View style={styles.box4}>
             {/*image1 */}
-            <Text style={styles.names}>Relax&#x1F60C;</Text>
+            <Text style={styles.names}>Relax</Text>
 
             </View>
 
@@ -101,7 +104,10 @@ const  Welcomepage= ({navigation}) => {
 
 
 
-  <ScrollView horizontal={true}>
+  <ScrollView horizontal={true}
+  showsVerticalScrollIndicator={false}
+  showsHorizontalScrollIndicator={false}
+  >
       <View style={styles.boxcategory}>
           <View style={styles.box1category}>
                <ImageBackground source={require('../../vedios/night.jpeg')} style={styles.categoryimage} resizeMode='cover' 
@@ -193,7 +199,6 @@ const styles = StyleSheet.create({
       },
       viewall:{
         fontSize:18,
-        color:'green',
         fontWeight:'bold',
         color:'gray'
       },
@@ -215,7 +220,7 @@ const styles = StyleSheet.create({
       box2:{
         width:width/2.2,
         height:height/15,
-        backgroundColor:'#E01C34',
+        backgroundColor:'#AA3A38',
         margin:width/100,
         borderRadius:24
 
