@@ -305,8 +305,9 @@ const styles = StyleSheet.create({
         textAlignVertical:'center',
         alignContent: 'center',
         alignItems: 'center',
-        flex:1,
-        color:'white'
+        color:'white',
+        top:height/15
+
         
   },
     
