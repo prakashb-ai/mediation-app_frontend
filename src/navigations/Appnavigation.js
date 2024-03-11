@@ -7,6 +7,8 @@ import Home from '../screens/Home'
 const Stack = createNativeStackNavigator();
 
 const Appnavigation = () =>{
+
+    
     return(
         <NavigationContainer>
             <Stack.Navigator
