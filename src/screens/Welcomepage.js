@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import NetInfo from '@react-native-community/netinfo'
 
 
-const { width, height } = Dimensions.get('window')
+const { width, height } = Dimensions.get('window') || {width:0,height:0}
 
 console.log("width :" + width)
 console.log("height :" + height)
@@ -42,6 +42,9 @@ const Welcomepage = ({ navigation }) => {
               style={styles.headingimage}
 
             />
+            <View style={styles.iconcontainer}>
+              <Icon name='user' size={25} color="black"/>
+            </View>
           </View>
 
 
@@ -199,7 +202,7 @@ const styles = StyleSheet.create({
   searchinline: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: height / 2.81,
+    marginTop: height / 4,
     margin: 11,
     backgroundColor: 'white',
     borderRadius: 20,
@@ -243,6 +246,7 @@ const styles = StyleSheet.create({
   box: {
     flexDirection: 'row',
     height: height / 2,
+    
 
   },
   box1: {
@@ -251,6 +255,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#11728C',
     margin: width / 100,
     borderRadius: 24,
+   
 
   },
   box2: {
@@ -265,7 +270,7 @@ const styles = StyleSheet.create({
   boxsecond: {
     flexDirection: 'row',
     height: height / 2,
-    margin: height / 9,
+    margin: height / 8.8,
     marginLeft: width / 250,
     position: 'absolute',
 
@@ -359,7 +364,10 @@ const styles = StyleSheet.create({
     width: width * 0.9,
     height: height / 1.5
   },
-
+  iconcontainer:{
+    paddingLeft:width/1.15,
+    marginTop:height/15,
+  }
 
 
 })
