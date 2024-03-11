@@ -65,6 +65,7 @@ const Home = ({ navigation }) => {
           
         </View>
       ) : (
+        
         <Image
           source={require('../../images/image_lost.jpg')}
           style={styles.connectionLostImage}
