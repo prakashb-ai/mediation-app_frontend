@@ -43,7 +43,11 @@ const Welcomepage = ({ navigation }) => {
 
             />
             <View style={styles.iconcontainer}>
+              <TouchableOpacity
+                onPress={()=>navigation.navigate("ProfilePage")}
+              >
               <Icon name='user' size={25} color="black"/>
+              </TouchableOpacity>
             </View>
           </View>
 
