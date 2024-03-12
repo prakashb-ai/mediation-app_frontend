@@ -1,5 +1,5 @@
-import { View, Text, Dimensions, StyleSheet, TouchableOpacity, Image, ScrollView, ImageBackground } from 'react-native'
-import React from 'react'
+import { View, Text, Dimensions, StyleSheet, TouchableOpacity, FlatList, Image, ScrollView, ImageBackground } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ProfileNetworkIndication from './ProfileNetworkIndication';
 
@@ -9,13 +9,37 @@ console.log("width: " + width)
 console.log("height: " + height)
 
 const ProfilePage = ({ navigation }) => {
+
+    const [streak, setStreak] = useState([])
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch('http://localhost:8000/api/get/daystreak', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            const responseData = await response.json()
+            console.log(responseData.data)
+            setStreak(responseData.data)
+        } catch (error) {
+            console.error('Error fetching data:', error);
+
+        }
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
     return (
         <>
             <View style={styles.container}>
                 <View style={styles.backicon}>
-                    
+
                     <TouchableOpacity
-                        onPress={()=>navigation.navigate('Welcomepage')}
+                        onPress={() => navigation.navigate('Welcomepage')}
                     >
                         <Icon name='arrow-left' size={30} color="black" />
                     </TouchableOpacity>
@@ -103,7 +127,15 @@ const ProfilePage = ({ navigation }) => {
 
                         }}
                     >
-                        <Text style={styles.profileFeaturesName}></Text>
+
+                        <FlatList
+                            data={streak}
+                            keyExtractor={(item, index) => item.id ? item.id.toString() : index.toString()} 
+                            renderItem={({ item }) => (
+                                <Text style={styles.profileFeaturesName}>Day:{item.DayStreak}</Text>
+                            )}
+                        />
+
                     </ImageBackground>
 
 
@@ -204,7 +236,7 @@ const styles = StyleSheet.create({
     profileImage: {
         width: '100%',
         height: '100%',
-        
+
 
     },
     addNetworkStatus: {
@@ -215,17 +247,17 @@ const styles = StyleSheet.create({
     nameContainer: {
         flexDirection: 'row',
         justifyContent: 'center',
-        marginBottom:height/55
+        marginBottom: height / 55
 
     },
 
     profilename: {
-        fontSize: height/26,
+        fontSize: height / 26,
         fontWeight: '500',
 
     },
-    
-    
+
+
     bio: {
         flexDirection: 'row',
         justifyContent: 'center',
@@ -306,7 +338,7 @@ const styles = StyleSheet.create({
         marginRight: width / 15,
     },
     settingNames: {
-        fontSize: height/43,
+        fontSize: height / 43,
         paddingHorizontal: height % 3, // Adjust as needed
 
     },
@@ -317,7 +349,7 @@ const styles = StyleSheet.create({
         margin: height / 50,
         borderRadius: Math.min(width, height) / 24,
         marginRight: width / 4,
-        elevation:0.5
+        elevation: 0.5
     }
 
 

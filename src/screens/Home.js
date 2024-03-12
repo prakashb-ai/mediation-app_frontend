@@ -6,7 +6,31 @@ const { width, height } = Dimensions.get('window') || { width: 0, height: 0 };
 
 const Home = ({ navigation }) => {
   const [started, setStarted] = useState(null);
-  const [isConnected, setIsConnected] = useState(true); // Assume connected by default
+  const [isConnected, setIsConnected] = useState(true);
+  const [streak,setStreak] =useState([])
+
+
+  const PostStreak = async()=>{
+    try{
+        const response = await fetch('http://localhost:8000/api/post/daystreak',{
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json'
+          },
+          body:JSON.stringify({
+            DayStreak :'DayStreak'
+          })
+        });
+        const responseData = await response.json()
+        console.log(responseData)
+        setStreak(responseData)
+        
+       
+    }catch(error){
+      console.error('Error fetching data:', error);
+
+    }
+  }
 
   const fetchData = async () => {
     try {
@@ -23,13 +47,13 @@ const Home = ({ navigation }) => {
       console.log(data)
       setStarted(data);
     } catch (error) {
-      console.error('Error fetching data:', error);
     }
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+     PostStreak();
+  },[]);
 
   useEffect(() => {
     const unsubscribe = NetInfo.addEventListener(state => {
@@ -51,9 +75,10 @@ const Home = ({ navigation }) => {
           />
            <View style={styles.title}>
                 <TouchableOpacity
-                    onPress={(fetchData)=>
+                    onPress={(fetchData,PostStreak)=>
                         navigation.navigate('Welcomepage')}
                         fetchData
+                        PostStreak
                     
                     
                 >

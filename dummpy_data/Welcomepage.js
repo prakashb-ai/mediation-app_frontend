@@ -129,6 +129,7 @@ const Welcomepage = ({ navigation }) => {
 
 
         <ScrollView>
+
           <FlatList
             data={data}
             keyExtractor={(item) => item.id}
@@ -136,6 +137,7 @@ const Welcomepage = ({ navigation }) => {
             showsVerticalScrollIndicator={false}
             showsHorizontalScrollIndicator={false}
             renderItem={({ item }) => (
+              
               <View style={styles.boxcategory}>
                 <View style={styles.box1category}>
                   <ImageBackground source={require('../../vedios/night.jpeg')}

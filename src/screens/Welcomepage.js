@@ -1,6 +1,6 @@
 import { View, Text, StyleSheet, Image, Dimensions, StatusBar, TextInput, TouchableOpacity, ImageBackground, ScrollView, FlatList } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import NetInfo from '@react-native-community/netinfo'
 
 
@@ -46,7 +46,7 @@ const Welcomepage = ({ navigation }) => {
               <TouchableOpacity
                 onPress={()=>navigation.navigate("ProfilePage")}
               >
-              <Icon name='user' size={25} color="black"/>
+              <Icon name='user-circle' size={30} color="white"/>
               </TouchableOpacity>
             </View>
           </View>
