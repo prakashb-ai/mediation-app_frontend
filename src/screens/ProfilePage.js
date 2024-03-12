@@ -1,4 +1,4 @@
-import { View, Text, Dimensions, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native'
+import { View, Text, Dimensions, StyleSheet, TouchableOpacity, Image, ScrollView, ImageBackground } from 'react-native'
 import React from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ProfileNetworkIndication from './ProfileNetworkIndication';
@@ -22,7 +22,7 @@ const ProfilePage = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
 
-                
+
                 <View style={styles.profileContainter}>
 
                     <View style={[styles.profileImageCircle, { backgroundColor: 'pink' }]}>
@@ -38,23 +38,78 @@ const ProfilePage = ({ navigation }) => {
 
 
                 <View style={styles.addNetworkStatus}>
-                    <ProfileNetworkIndication/>
+                    <ProfileNetworkIndication />
                 </View>
             </View>
 
-                <View style={styles.nameContainer}>
-                    <Text style={styles.profilename}>
-                        prakash
+            <View style={styles.nameContainer}>
+                <Text style={styles.profilename}>
+                    prakash
+                </Text>
+
+            </View>
+
+            <View style={styles.bio}>
+                <Text style={styles.biofont}>
+                    I am full stack developer
+
+                </Text>
+            </View>
+
+            <View style={styles.editContainer}>
+                
+                <View style={styles.editOutside}>
+                    
+                    <Text style={styles.editName}>Edit
+                    <Icon name='edit' size={15} style={styles.editIcon}/>
                     </Text>
-                    <View style={styles.editIcon}>
-                        <TouchableOpacity 
-                            onPress={()=>navigation.navigate('EditPage')}
-                        >
-                        <Icon name='pencil' size={20} color="black"/>
-                        </TouchableOpacity>
-                    </View>
+                    
                 </View>
-            
+                
+
+            </View>
+
+
+            <View style={styles.profileFeatures}>
+                    <View style={styles.wheather}>
+                    <ImageBackground
+                                source={require('../../images/wheather_background.jpg')}
+                                style={{
+                                    width:width/2.1,
+                                    height: height / 8,
+                                    borderRadius:35,
+                                    overflow:'hidden',
+                                    resizeMode:'cover'
+
+                                }}
+                            >
+                        <Text style={styles.profileFeaturesName}>
+                            
+
+                        </Text>
+                        </ImageBackground>
+
+                    </View>
+
+
+                    <View style={styles.daystreak}>
+                    <ImageBackground
+                                source={require('../../images/fire.png')}
+                                style={{
+                                    width:width/2.1,
+                                    height: height / 8,
+                                    borderRadius:35,
+                                    overflow:'hidden',
+                                    resizeMode:'cover'
+
+                                }}
+                            >
+                    <Text style={styles.profileFeaturesName}></Text>
+                    </ImageBackground>
+
+
+                    </View>
+            </View>
 
         </ScrollView>
     )
@@ -62,9 +117,8 @@ const ProfilePage = ({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor:'#E1F8DC',
-        width:width,
-        height:height/2.9
+        width: width,
+        height: height / 3.7
     },
     backicon: {
         flexDirection: 'row',
@@ -72,19 +126,19 @@ const styles = StyleSheet.create({
         margin: height / 100,
 
     },
-    
+
     profileImageCircle: {
-        width: Math.min(width, height) / 2.2, 
-        height: Math.min(width, height) / 2.2, 
-        borderRadius: Math.min(width, height) / 2.2, 
+        width: Math.min(width, height) / 2.8,
+        height: Math.min(width, height) / 2.8,
+        borderRadius: Math.min(width, height) / 2.8,
         overflow: 'hidden',
-        alignSelf: 'center', 
-        bottom: height / 12, 
+        alignSelf: 'center',
+        bottom: height / 12,
         alignContent: 'center',
         justifyContent: 'center',
         alignSelf: 'center',
-        elevation:6,
-        borderWidth:1
+        elevation: 6,
+        borderWidth: 1
 
     },
     profileImage: {
@@ -93,23 +147,91 @@ const styles = StyleSheet.create({
 
     },
     addNetworkStatus: {
-        bottom: height/8.7,
-        left:width/7.5
+        bottom: height / 9,
+        left: width / 7.5,
+        position: 'fixed'
 
 
     },
     profilename: {
-        fontSize:29.59,
-        left:width/25,
-        fontWeight:'400'
+        fontSize: 35,
+        fontWeight: '400',
+
     },
-    nameContainer:{
-           flexDirection:'row',
+    nameContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+
     },
-    editIcon:{
-            marginTop: height/60,
-            left:width/13
+
+    bio: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginVertical: height / 65,
+        margin: height / 40
+    },
+    biofont: {
+        justifyContent: 'center',
+
+    },
+    editContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        margin: height / 65
+
+    },
+    editOutside: {
+        backgroundColor: '#FFFF5C',
+        width: Math.min(width, height) / 1.3,
+        height: Math.min(width, height) / 8,
+        borderRadius: Math.min(width, height) / 15,
+        elevation:3,
+        alignItems: 'center', 
+    },
+    editName: {
+        textAlign: 'center',
+        padding:Math.min(width, height) / 75,
+        fontSize: 23,
+        justifyContent:'center'
+        
+    },
+    settingName:{
+        fontSize:28,
+        fontWeight:'bold'
+    },
+    profileFeatures:{
+            flexDirection:'row',
+            justifyContent:'space-around',
+            marginTop:height/60,
+            
+            
+    },
+    wheather:{
+        width: width / 2.1,
+        height: height / 8,
+        margin: width / 100,
+        borderRadius: 24,
+        marginRight: width/80,
+
+    },
+    daystreak:{
+        width: width / 2.1,
+        height: height / 8,
+        margin: width / 100,
+        borderRadius: 24,
+    },
+    profileFeaturesName:{
+        flex:1,
+        textAlign:'center',
+        justifyContent:'center',
+        alignContent:'center',
+        alignItems:'center',
+        padding: Math.min(width,height)/12,
+        fontSize:22
+        
     }
+
+
 })
 
 export default ProfilePage

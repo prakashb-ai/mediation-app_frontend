@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     opacity: 1,
-    borderWidth:3,
+    borderWidth:2,
   },
   
 });
