@@ -17,7 +17,7 @@ const Appnavigation = () =>{
                 screenOptions={{
                     headerShown: false
                 }}>
-                <Stack.Screen name="Home" component={Home} screenOptions={{headerShown:true}}/>
+                <Stack.Screen name="Home" component={Home} />
                 <Stack.Screen name="Welcomepage" component={Welcomepage}/>
                 <Stack.Screen name="SearchPage" component={SearchPage}/>
                 <Stack.Screen name="ProfilePage" component={ProfilePage}/>
