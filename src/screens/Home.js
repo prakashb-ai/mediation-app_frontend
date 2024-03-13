@@ -7,31 +7,8 @@ const { width, height } = Dimensions.get('window') || { width: 0, height: 0 };
 const Home = ({ navigation }) => {
   const [started, setStarted] = useState(null);
   const [isConnected, setIsConnected] = useState(true);
-  const [streak,setStreak] =useState([])
 
-
-  const PostStreak = async()=>{
-    try{
-        const response = await fetch('http://localhost:8000/api/post/daystreak',{
-          method:'POST',
-          headers:{
-            'Content-Type':'application/json'
-          },
-          body:JSON.stringify({
-            DayStreak :'DayStreak'
-          })
-        });
-        const responseData = await response.json()
-        console.log(responseData)
-        setStreak(responseData)
-        
-       
-    }catch(error){
-      console.error('Error fetching data:', error);
-
-    }
-  }
-
+    
   const fetchData = async () => {
     try {
       const response = await fetch('http://localhost:8000/api/post/getstarted', {
@@ -52,7 +29,6 @@ const Home = ({ navigation }) => {
 
   useEffect(() => {
     fetchData();
-     PostStreak();
   },[]);
 
   useEffect(() => {

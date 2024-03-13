@@ -11,18 +11,42 @@ console.log("height: " + height)
 const ProfilePage = ({ navigation }) => {
 
     const [streak, setStreak] = useState([])
+    const [createdStreak,updateStreak] = useState([])
 
-    const fetchData = async () => {
+
+    const createdData  =async ()=>{
         try {
-            const response = await fetch('http://localhost:8000/api/get/daystreak', {
+            const response =  await fetch('http://localhost:8000/api/get/daystreak', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
-                },
+                }
             })
+            
+            const responseData = await  response.json()
+            console.log(responseData)
+
+            updateStreak(responseData.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+
+        }
+        
+    }
+
+    const fetchData = async () => {
+        try {
+            const response = await fetch('http://localhost:8000/api/get/allday/daystreak', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            
             const responseData = await response.json()
-            console.log(responseData.data)
-            setStreak(responseData.data)
+            console.log(responseData)
+
+            setStreak(responseData.data.slice(0,1));
         } catch (error) {
             console.error('Error fetching data:', error);
 
@@ -30,7 +54,9 @@ const ProfilePage = ({ navigation }) => {
     }
 
     useEffect(() => {
-        fetchData()
+        createdData();
+
+        fetchData();
     }, [])
 
     return (
@@ -127,15 +153,16 @@ const ProfilePage = ({ navigation }) => {
 
                         }}
                     >
-
                         <FlatList
                             data={streak}
-                            keyExtractor={(item, index) => item.id ? item.id.toString() : index.toString()} 
+                            keyExtractor={(item, index) => item.id ? item.id.toString() : index.toString()}
                             renderItem={({ item }) => (
-                                <Text style={styles.profileFeaturesName}>Day:{item.DayStreak}</Text>
+                                <Text style={styles.profileFeaturesName}>
+                                    Day:{item.DayStreak}
+                                    
+                                </Text>
                             )}
                         />
-
                     </ImageBackground>
 
 
