@@ -128,12 +128,12 @@ const ProfilePage = ({ navigation }) => {
                             height: height / 8,
                             borderRadius: 35,
                             overflow: 'hidden',
-                            resizeMode: 'cover'
+                            resizeMode: 'cover',
 
                         }}
                     >
                         <Text style={styles.profileFeaturesName}>
-
+                            50🔥
 
                         </Text>
                     </ImageBackground>
@@ -158,7 +158,7 @@ const ProfilePage = ({ navigation }) => {
                             keyExtractor={(item, index) => item.id ? item.id.toString() : index.toString()}
                             renderItem={({ item }) => (
                                 <Text style={styles.profileFeaturesName}>
-                                    Day:{item.DayStreak}
+                                    {item.DayStreak}🔥
                                     
                                 </Text>
                             )}
@@ -347,8 +347,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignContent: 'center',
         alignItems: 'center',
-        padding: Math.min(width, height) / 12,
-        fontSize: 22
+        padding: Math.min(width, height) / 19,
+        fontSize: 45,
+        
 
     },
     settingContainter: {
