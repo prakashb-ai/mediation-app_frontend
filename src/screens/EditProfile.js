@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Dimensions, StyleSheet, TouchableOpacity, ScrollView, Image, Text, TextInput } from 'react-native';
+import { View, Dimensions, StyleSheet, Pressable, TouchableOpacity, Button, ScrollView, Image, Text, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const { width, height } = Dimensions.get('window') || { width: 0, height: 0 };
@@ -16,37 +16,43 @@ const EditProfile = ({ navigation }) => {
     ];
 
     const [selectedImage, setSelectedImage] = useState(null);
-    const [data,setData] = useState([])
+    const [data, setData] = useState([])
+    const [inputData, setInputData] = useState({
+        name:" ",
+
+    })
 
 
-    const PostData = async()=>{
-            const responseData = await fetch('http://localhost:8000/api/post/users',{
-                method:'POST',
-                headers:{
-                    'Content-Type':'application/json'
+    const PostData = async () => {
+        try {
+            const responseData = await fetch('http://localhost:8000/api/post/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                body:JSON.stringify({
-                    name:'name',
-                    Bio:'Bio',
-                    Dob:'Dob',
-                    gender:'gender',
-                    rating:'rating'
+                body: JSON.stringify({
+                    name: "name"
                 })
             })
             const response = await responseData.json()
             console.log(response)
-            setData(response)
-    }
-    useEffect(()=>{
-        PostData();
-    },[])
+        } catch (error) {
+            console.log(error)
+        }
 
+    }
+useEffect(()=>{
+    PostData()
+},[])
 
     const handleImagePress = (imageId) => {
         const image = IMAGES_DATA.find(img => img.id === imageId);
         setSelectedImage(image);
     };
 
+    const handleInputChange = (text) => {
+        setInputData(text);
+    };
     return (
         <>
             <View style={styles.container}>
@@ -96,15 +102,7 @@ const EditProfile = ({ navigation }) => {
                 </View>
             </ScrollView>
 
-            <View style={styles.container}>
-            <TextInput
-                style={styles.input}
-                value={textInput}
-                onChangeText={handleInputChange}
-                placeholder="Enter text"
-            />
-            <Button title="Save" onPress={handleSave} />
-            </View>
+           
 
 
         </>
@@ -141,9 +139,9 @@ const styles = StyleSheet.create({
         textAlign: 'center',
 
     },
-    selectedImage:{
-        width:'100%',
-        height:'100%'
+    selectedImage: {
+        width: '100%',
+        height: '100%'
     },
     showImagesContainer: {
         flexDirection: 'row',
@@ -162,9 +160,11 @@ const styles = StyleSheet.create({
     thumbnail: {
         width: "100%",
         height: "100%",
-        resizeMode:'contain'
-        
 
+
+
+    },
+    detailContainer: {
 
     },
 
