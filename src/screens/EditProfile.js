@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { View, Dimensions, StyleSheet, Pressable, KeyboardAvoidingView,Platform, TouchableOpacity, Button, ScrollView, Image, Text, TextInput } from 'react-native';
+import { View, Dimensions, StyleSheet, Pressable, KeyboardAvoidingView, Platform, TouchableOpacity, Button, ScrollView, Image, Text, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const { width, height } = Dimensions.get('window') || { width: 0, height: 0 };
 
 const EditProfile = ({ navigation }) => {
 
-    
+
 
     const IMAGES_DATA = [
         { id: 1, source: require('../../vedios/image1.jpg') },
@@ -19,45 +19,53 @@ const EditProfile = ({ navigation }) => {
 
     const [selectedImage, setSelectedImage] = useState(null);
 
-    const [name,setName] = useState('');
-    const [Bio,setBio] = useState('')
+    const [name, setName] = useState('');
+    const [Bio, setBio] = useState('')
+    const [newUserName, setNewUserName] = useState('');
+    const [newUserBio, setNewUserBio] = useState('');
 
-    const createUser = ()=>{
-        const newUser ={
-            name:name,
-            Bio:Bio
-        }
-    
 
-    fetch('http://localhost:8000/api/post/users',{
-        method:'POST',
-        headers:{
-            'Content-Type':'application/json'
-        },
-        body:JSON.stringify(newUser)
-    })
-    .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to create user');
+    const createUser = () => {
+        const newUser = {
+            name: name,
+            Bio: Bio
         }
-        return response.json();
-      })
-      .then(data=>{
-        console.log('created data',data)
-        setName('');
-        setBio('')
-      })
-      .catch(error => {
-        // Handle error
-        console.error('Error creating user:', error);
-        Alert.alert('Error', 'Failed to create user');
-      });
+
+
+        fetch('http://localhost:8000/api/post/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newUser)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to create user');
+                }
+                return response.json();
+            })
+            .then(data => {
+
+
+                console.log('created data', data)
+                setName('');
+                setBio('')
+                setNewUserName(name); // Store the newly created name
+                setNewUserBio(Bio);
+            })
+            .catch(error => {
+                // Handle error
+                console.error('Error creating user:', error);
+                Alert.alert('Error', 'Failed to create user');
+            });
     }
 
     const handleImagePress = (imageId) => {
         const image = IMAGES_DATA.find(img => img.id === imageId);
         setSelectedImage(image);
     };
+
 
 
     return (
@@ -68,7 +76,7 @@ const EditProfile = ({ navigation }) => {
                 <View style={styles.backicon}>
 
                     <TouchableOpacity
-                        onPress={() => navigation.navigate('ProfilePage')}
+                        onPress={() => navigation.navigate('ProfilePage', { profileName: newUserName, Bio: newUserBio,profileImage:selectedImage.source })}
                     >
                         <Icon name='arrow-left' size={30} color="black" />
                     </TouchableOpacity>
@@ -81,6 +89,7 @@ const EditProfile = ({ navigation }) => {
 
                     {selectedImage ? (
                         <Image source={selectedImage.source} style={styles.selectedImage} />
+
                     ) : (
                         <Text style={styles.emptyBox}>Select an image</Text>
                     )}
@@ -109,20 +118,20 @@ const EditProfile = ({ navigation }) => {
                 </View>
             </ScrollView>
 
-           
+
             <ScrollView
-               showsVerticalScrollIndicator={false}
-               showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
             >
 
-            <View style={styles.settingContainter}>              
+                <View style={styles.settingContainter}>
 
                     <View style={styles.boxSetting}>
                         <View style={styles.languageIcon}>
                             <TextInput
                                 placeholder='enter a name'
                                 value={name}
-                                onChangeText={text=>setName(text)}
+                                onChangeText={text => setName(text)}
                                 style={styles.input}
                             >
 
@@ -137,7 +146,7 @@ const EditProfile = ({ navigation }) => {
                             <TextInput
                                 placeholder='enter a bio'
                                 value={Bio}
-                                onChangeText={text=>setBio(text)}
+                                onChangeText={text => setBio(text)}
 
                                 style={styles.input}
                             >
@@ -147,20 +156,20 @@ const EditProfile = ({ navigation }) => {
                     </View>
 
 
-                
-                    <View style={styles.saveContainter}>
-                <Button 
-                title='save'
-                onPress={createUser}
-                style={styles.savename}>
-                    
-                </Button>
-            </View>
-            </View>
 
-            
+                    <View style={styles.saveContainter}>
+                        <Button
+                            title='save'
+                            onPress={createUser}
+                            style={styles.savename}>
+
+                        </Button>
+                    </View>
+                </View>
+
+
             </ScrollView>
-            
+
 
 
         </>
@@ -213,7 +222,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         borderWidth: 1,
         marginVertical: height / 10,
-        
+
 
     },
     thumbnail: {
@@ -224,44 +233,44 @@ const styles = StyleSheet.create({
 
     },
     settingContainter: {
-        margin:height/50,
-        bottom:height/25
+        margin: height / 50,
+        bottom: height / 25
 
     },
     languageIcon: {
         flexDirection: 'row',
         margin: width / 30,
-        
+
     },
-  
-    
-    input:{
-        fontSize:20,
+
+
+    input: {
+        fontSize: 20,
     },
     boxSetting: {
         width: width / 1.1,
         height: height / 15,
         backgroundColor: 'white',
         margin: height / 150,
-        marginTop:height/50,
+        marginTop: height / 50,
         borderRadius: Math.min(width, height) / 5,
         marginRight: width / 4,
         elevation: 0.5,
 
-        
-    },
-    saveContainter:{
-        margin:20,
-        paddingVertical: height/75,
-        paddingHorizontal: width/75,
 
     },
-    savename:{
+    saveContainter: {
+        margin: 20,
+        paddingVertical: height / 75,
+        paddingHorizontal: width / 75,
+
+    },
+    savename: {
         fontSize: 20,
         textAlign: 'center',
-        backgroundColor: 'blue', 
+        backgroundColor: 'blue',
         color: 'white'
-        
+
     }
 
 });

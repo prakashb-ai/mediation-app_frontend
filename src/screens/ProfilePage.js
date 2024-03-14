@@ -8,7 +8,12 @@ const { width, height } = Dimensions.get('window') || { width: 0, height: 0 }
 console.log("width: " + width)
 console.log("height: " + height)
 
-const ProfilePage = ({ navigation }) => {
+const ProfilePage = ({ navigation,route }) => {
+    const { profileName } = route?.params ?? { profileName: '' };
+    const { Bio } = route?.params ?? { Bio: '' };
+    const { profileImage } = route?.params ?? { profileImage: '' };
+
+
 
     const [streak, setStreak] = useState([])
     const [createdStreak,updateStreak] = useState([])
@@ -84,7 +89,7 @@ const ProfilePage = ({ navigation }) => {
 
                     <View style={[styles.profileImageCircle, { backgroundColor: 'pink' }]}>
                         <Image
-                            source={require('../../vedios/startpage.png')}
+                            source={profileImage}
                             style={styles.profileImage}
                             resizeMode='cover'
                         />
@@ -101,14 +106,14 @@ const ProfilePage = ({ navigation }) => {
 
             <View style={styles.nameContainer}>
                 <Text style={styles.profilename}>
-                    prakash🖤
+                    {profileName}
                 </Text>
 
             </View>
 
             <View style={styles.bio}>
                 <Text style={styles.biofont}>
-                    I am full stack developer
+                    {Bio}
 
                 </Text>
             </View>
