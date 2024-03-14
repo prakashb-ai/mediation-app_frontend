@@ -88,11 +88,8 @@ const ProfilePage = ({ navigation,route }) => {
                 <View style={styles.profileContainter}>
 
                     <View style={[styles.profileImageCircle, { backgroundColor: 'pink' }]}>
-                        <Image
-                            source={profileImage}
-                            style={styles.profileImage}
-                            resizeMode='cover'
-                        />
+                              <Image source={profileImage} style={styles.profileImage} />
+
 
                     </View>
                 </View>
@@ -106,14 +103,14 @@ const ProfilePage = ({ navigation,route }) => {
 
             <View style={styles.nameContainer}>
                 <Text style={styles.profilename}>
-                    {profileName}Prakash
+                    {profileName}prakash
                 </Text>
 
             </View>
 
             <View style={styles.bio}>
                 <Text style={styles.biofont}>
-                    {Bio} fullstack developer
+                    {Bio} full stack developer
 
                 </Text>
             </View>

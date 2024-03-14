@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Dimensions, StyleSheet, Pressable, KeyboardAvoidingView, Platform, TouchableOpacity, Button, ScrollView, Image, Text, TextInput } from 'react-native';
+import { View, Dimensions, StyleSheet, TouchableOpacity, Button, ScrollView, Image, Text, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const { width, height } = Dimensions.get('window') || { width: 0, height: 0 };
@@ -61,6 +61,7 @@ const EditProfile = ({ navigation }) => {
             });
     }
 
+  
     const handleImagePress = (imageId) => {
         const image = IMAGES_DATA.find(img => img.id === imageId);
 
@@ -77,7 +78,7 @@ const EditProfile = ({ navigation }) => {
                 <View style={styles.backicon}>
 
                     <TouchableOpacity
-                        onPress={() => navigation.navigate('ProfilePage', { profileName: newUserName, Bio: newUserBio,profileImage:selectedImage.source })}
+                        onPress={() => navigation.navigate('ProfilePage', { profileName: newUserName, Bio: newUserBio })}
                     >
                         <Icon name='arrow-left' size={30} color="black" />
                     </TouchableOpacity>
@@ -89,7 +90,7 @@ const EditProfile = ({ navigation }) => {
                 <View style={styles.selectCircle}>
 
                     {selectedImage ? (
-                        <Image source={selectedImage.source} style={styles.selectedImage} />
+                        <Image source={selectedImage.source} style={[styles.selectedImage,{resizeMode:'cover'}]} />
 
                     ) : (
                         <Text style={styles.emptyBox}>Select an image</Text>
@@ -111,7 +112,8 @@ const EditProfile = ({ navigation }) => {
 
                         <View key={image.id} style={[styles.showImagesCircle, { marginLeft: width / 45 }]}>
                             <TouchableOpacity key={image.id} onPress={() => handleImagePress(image.id)}>
-                                <Image source={image.source} style={styles.thumbnail} />
+                                
+                                <Image source={image.source} style={[styles.thumbnail,{resizeMode:'cover'}]} />
                             </TouchableOpacity>
                         </View>
                     ))}
@@ -161,7 +163,10 @@ const EditProfile = ({ navigation }) => {
                     <View style={styles.saveContainter}>
                         <Button
                             title='save'
-                            onPress={createUser}
+                            onPress={()=>{
+                                navigation.navigate('ProfilePage',{profileImage:selectedImage.source})
+                                createUser();
+                            }}
                             style={styles.savename}>
 
                         </Button>
@@ -208,7 +213,8 @@ const styles = StyleSheet.create({
     },
     selectedImage: {
         width: '100%',
-        height: '100%'
+        height: '100%',
+
     },
     showImagesContainer: {
         flexDirection: 'row',
@@ -223,12 +229,13 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
         borderWidth: 1,
         marginVertical: height / 10,
-
+        
 
     },
     thumbnail: {
         width: "100%",
         height: "100%",
+
 
 
 
