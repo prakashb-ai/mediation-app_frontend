@@ -6,6 +6,8 @@ const { width, height } = Dimensions.get('window') || { width: 0, height: 0 };
 
 const EditProfile = ({ navigation }) => {
 
+    
+
     const IMAGES_DATA = [
         { id: 1, source: require('../../vedios/image1.jpg') },
         { id: 2, source: require('../../vedios/image2.jpg') },
@@ -17,29 +19,40 @@ const EditProfile = ({ navigation }) => {
 
     const [selectedImage, setSelectedImage] = useState(null);
 
+    const [name,setName] = useState('');
+    const [Bio,setBio] = useState('')
 
-
-    const PostData = async () => {
-        try {
-            const responseData = await fetch('http://localhost:8000/api/post/users', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    name: "name"
-                })
-            })
-            const response = await responseData.json()
-            console.log(response)
-        } catch (error) {
-            console.log(error)
+    const createUser = ()=>{
+        const newUser ={
+            name:name,
+            Bio:Bio
         }
+    
 
+    fetch('http://localhost:8000/api/post/users',{
+        method:'POST',
+        headers:{
+            'Content-Type':'application/json'
+        },
+        body:JSON.stringify(newUser)
+    })
+    .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to create user');
+        }
+        return response.json();
+      })
+      .then(data=>{
+        console.log('created data',data)
+        setName('');
+        setBio('')
+      })
+      .catch(error => {
+        // Handle error
+        console.error('Error creating user:', error);
+        Alert.alert('Error', 'Failed to create user');
+      });
     }
-    useEffect(() => {
-        PostData()
-    }, [])
 
     const handleImagePress = (imageId) => {
         const image = IMAGES_DATA.find(img => img.id === imageId);
@@ -108,6 +121,8 @@ const EditProfile = ({ navigation }) => {
                         <View style={styles.languageIcon}>
                             <TextInput
                                 placeholder='enter a name'
+                                value={name}
+                                onChangeText={text=>setName(text)}
                                 style={styles.input}
                             >
 
@@ -121,6 +136,9 @@ const EditProfile = ({ navigation }) => {
 
                             <TextInput
                                 placeholder='enter a bio'
+                                value={Bio}
+                                onChangeText={text=>setBio(text)}
+
                                 style={styles.input}
                             >
 
@@ -131,7 +149,12 @@ const EditProfile = ({ navigation }) => {
 
                 
                     <View style={styles.saveContainter}>
-                <Text style={styles.savename}>Save</Text>
+                <Button 
+                title='save'
+                onPress={createUser}
+                style={styles.savename}>
+                    
+                </Button>
             </View>
             </View>
 
@@ -228,19 +251,17 @@ const styles = StyleSheet.create({
         
     },
     saveContainter:{
-        marginTop:height/10,
-        marginLeft:width/5,
-        width:width/2,
-        height:height/15,
-        backgroundColor:'blue',
-        borderRadius:24
+        margin:20,
+        paddingVertical: height/75,
+        paddingHorizontal: width/75,
+
     },
     savename:{
-        color:'white',
-        fontSize:20,
-        textAlign:'center',
-        padding:height/80
-
+        fontSize: 20,
+        textAlign: 'center',
+        backgroundColor: 'blue', 
+        color: 'white'
+        
     }
 
 });

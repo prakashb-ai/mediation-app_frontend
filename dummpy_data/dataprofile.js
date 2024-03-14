@@ -20,7 +20,7 @@ const CreateUserComponent = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(newUser)
+      body: JSON.stringify({newUser})
     })
     .then(response => {
       if (!response.ok) {
