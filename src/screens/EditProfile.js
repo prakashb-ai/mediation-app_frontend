@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Dimensions, StyleSheet, Pressable, TouchableOpacity, Button, ScrollView, Image, Text, TextInput } from 'react-native';
+import { View, Dimensions, StyleSheet, Pressable, KeyboardAvoidingView,Platform, TouchableOpacity, Button, ScrollView, Image, Text, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const { width, height } = Dimensions.get('window') || { width: 0, height: 0 };
@@ -16,11 +16,7 @@ const EditProfile = ({ navigation }) => {
     ];
 
     const [selectedImage, setSelectedImage] = useState(null);
-    const [data, setData] = useState([])
-    const [inputData, setInputData] = useState({
-        name:" ",
 
-    })
 
 
     const PostData = async () => {
@@ -41,20 +37,19 @@ const EditProfile = ({ navigation }) => {
         }
 
     }
-useEffect(()=>{
-    PostData()
-},[])
+    useEffect(() => {
+        PostData()
+    }, [])
 
     const handleImagePress = (imageId) => {
         const image = IMAGES_DATA.find(img => img.id === imageId);
         setSelectedImage(image);
     };
 
-    const handleInputChange = (text) => {
-        setInputData(text);
-    };
+
     return (
         <>
+
             <View style={styles.container}>
 
                 <View style={styles.backicon}>
@@ -98,11 +93,51 @@ useEffect(()=>{
                         </View>
                     ))}
 
-
                 </View>
             </ScrollView>
 
            
+            <ScrollView
+               showsVerticalScrollIndicator={false}
+               showsHorizontalScrollIndicator={false}
+            >
+
+            <View style={styles.settingContainter}>              
+
+                    <View style={styles.boxSetting}>
+                        <View style={styles.languageIcon}>
+                            <TextInput
+                                placeholder='enter a name'
+                                style={styles.input}
+                            >
+
+                            </TextInput>
+                        </View>
+
+                    </View>
+
+                    <View style={styles.boxSetting}>
+                        <View style={styles.languageIcon}>
+
+                            <TextInput
+                                placeholder='enter a bio'
+                                style={styles.input}
+                            >
+
+                            </TextInput>
+                        </View>
+                    </View>
+
+
+                
+                    <View style={styles.saveContainter}>
+                <Text style={styles.savename}>Save</Text>
+            </View>
+            </View>
+
+            
+            </ScrollView>
+            
 
 
         </>
@@ -110,7 +145,6 @@ useEffect(()=>{
 }
 const styles = StyleSheet.create({
     container: {
-
     },
     backicon: {
         flexDirection: 'row',
@@ -145,7 +179,8 @@ const styles = StyleSheet.create({
     },
     showImagesContainer: {
         flexDirection: 'row',
-        bottom: height / 20,
+        bottom: height / 25,
+
 
     },
     showImagesCircle: {
@@ -154,7 +189,8 @@ const styles = StyleSheet.create({
         borderRadius: Math.min(width, height) / 2.8,
         overflow: 'hidden',
         borderWidth: 1,
-        marginVertical: height / 10
+        marginVertical: height / 10,
+        
 
     },
     thumbnail: {
@@ -164,10 +200,48 @@ const styles = StyleSheet.create({
 
 
     },
-    detailContainer: {
+    settingContainter: {
+        margin:height/50,
+        bottom:height/25
 
     },
+    languageIcon: {
+        flexDirection: 'row',
+        margin: width / 30,
+        
+    },
+  
+    
+    input:{
+        fontSize:20,
+    },
+    boxSetting: {
+        width: width / 1.1,
+        height: height / 15,
+        backgroundColor: 'white',
+        margin: height / 150,
+        marginTop:height/50,
+        borderRadius: Math.min(width, height) / 5,
+        marginRight: width / 4,
+        elevation: 0.5,
 
+        
+    },
+    saveContainter:{
+        marginTop:height/10,
+        marginLeft:width/5,
+        width:width/2,
+        height:height/15,
+        backgroundColor:'blue',
+        borderRadius:24
+    },
+    savename:{
+        color:'white',
+        fontSize:20,
+        textAlign:'center',
+        padding:height/80
+
+    }
 
 });
 
