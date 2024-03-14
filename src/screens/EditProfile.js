@@ -51,11 +51,10 @@ const EditProfile = ({ navigation }) => {
                 console.log('created data', data)
                 setName('');
                 setBio('')
-                setNewUserName(name); // Store the newly created name
+                setNewUserName(name);
                 setNewUserBio(Bio);
             })
             .catch(error => {
-                // Handle error
                 console.error('Error creating user:', error);
                 Alert.alert('Error', 'Failed to create user');
             });
