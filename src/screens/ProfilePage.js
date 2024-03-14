@@ -54,10 +54,18 @@ const ProfilePage = ({ navigation }) => {
     }
 
     useEffect(() => {
-        createdData();
-
-        fetchData();
-    }, [])
+        async function fetchDataAndCreatedData() {
+          try {
+            await createdData();
+            await fetchData();
+          } catch (error) {
+            console.error('Error fetching or creating data:', error);
+          }
+        }
+      
+        fetchDataAndCreatedData();
+      }, []);
+      
 
     return (
         <>
@@ -108,11 +116,13 @@ const ProfilePage = ({ navigation }) => {
             <View style={styles.editContainer}>
 
                 <View style={styles.editOutside}>
-
+        <TouchableOpacity
+            onPress={()=>navigation.navigate('EditPage')}
+        >
                     <Text style={styles.editName}>Edit
                         <Icon name='edit' size={15} style={styles.editIcon} />
                     </Text>
-
+                    </TouchableOpacity>
                 </View>
 
 

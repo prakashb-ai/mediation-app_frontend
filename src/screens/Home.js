@@ -51,10 +51,9 @@ const Home = ({ navigation }) => {
           />
            <View style={styles.title}>
                 <TouchableOpacity
-                    onPress={(fetchData,PostStreak)=>
+                    onPress={(fetchData)=>
                         navigation.navigate('Welcomepage')}
                         fetchData
-                        PostStreak
                     
                     
                 >

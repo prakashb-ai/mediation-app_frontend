@@ -5,6 +5,7 @@ import Welcomepage from '../screens/Welcomepage'
 import Home from '../screens/Home'
 import SearchPage from '../screens/SearchPage'
 import ProfilePage from '../screens/ProfilePage'
+import EditProfile from '../screens/EditProfile'
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ const Appnavigation = () =>{
                 <Stack.Screen name="Welcomepage" component={Welcomepage}/>
                 <Stack.Screen name="SearchPage" component={SearchPage}/>
                 <Stack.Screen name="ProfilePage" component={ProfilePage}/>
+                <Stack.Screen name="EditPage" component={EditProfile}/>
 
             </Stack.Navigator>
         </NavigationContainer>
