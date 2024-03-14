@@ -63,6 +63,7 @@ const EditProfile = ({ navigation }) => {
 
     const handleImagePress = (imageId) => {
         const image = IMAGES_DATA.find(img => img.id === imageId);
+
         setSelectedImage(image);
     };
 

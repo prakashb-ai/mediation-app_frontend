@@ -106,14 +106,14 @@ const ProfilePage = ({ navigation,route }) => {
 
             <View style={styles.nameContainer}>
                 <Text style={styles.profilename}>
-                    {profileName}
+                    {profileName}Prakash
                 </Text>
 
             </View>
 
             <View style={styles.bio}>
                 <Text style={styles.biofont}>
-                    {Bio}
+                    {Bio} fullstack developer
 
                 </Text>
             </View>
