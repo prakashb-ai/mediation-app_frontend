@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import NetInfo from '@react-native-community/netinfo'
 
-
 const { width, height } = Dimensions.get('window') || {width:0,height:0}
 
 console.log("width :" + width)
@@ -12,6 +11,9 @@ console.log("height :" + height)
 const Welcomepage = ({ navigation }) => {
 
   const [isConnected, setIsConnected] = useState(true)
+
+  
+
 
 
   useEffect(() => {
@@ -174,9 +176,21 @@ const Welcomepage = ({ navigation }) => {
 
             </View>
 
+
+
           </ScrollView>
-
-
+          <View style={styles.moodContainer}>
+            <Text style={styles.popularheading}>Music</Text>
+          <View style={styles.box4category}>
+              <TouchableOpacity onPress={()=>(navigation.navigate('SongPage'))}>
+                <ImageBackground source={require('../../vedios/song.jpg')} style={styles.categoryimage} resizeMode='cover' imageStyle={{ borderRadius: 24 }}>
+                  
+                  <Text style={styles.categorynamestext}>music</Text>
+                </ImageBackground>
+                </TouchableOpacity>
+              </View>
+          
+              </View>
         </View>
       ) : (
         <Image
