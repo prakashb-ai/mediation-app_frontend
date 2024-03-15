@@ -17,6 +17,7 @@ const ProfilePage = ({ navigation,route }) => {
 
     const [streak, setStreak] = useState([])
     const [createdStreak,updateStreak] = useState([])
+    const [isConnected,setIsConnected] = useState(null)
 
 
     const createdData  =async ()=>{
@@ -73,9 +74,14 @@ const ProfilePage = ({ navigation,route }) => {
       
 
     return (
+
         <>
+
+
             <View style={styles.container}>
+
                 <View style={styles.backicon}>
+
 
                     <TouchableOpacity
                         onPress={() => navigation.navigate('Welcomepage')}
@@ -243,6 +249,8 @@ const ProfilePage = ({ navigation,route }) => {
                 </ScrollView>
 
             </View>
+        
+              
         </>
     )
 }

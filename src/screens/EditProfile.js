@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
         marginTop: height / 50,
         borderRadius: Math.min(width, height) / 5,
         marginRight: width / 4,
-        elevation: 0.5,
+        elevation: 2,
 
 
     },

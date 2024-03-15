@@ -35,6 +35,7 @@ const Home = ({ navigation }) => {
     const unsubscribe = NetInfo.addEventListener(state => {
       setIsConnected(state.isConnected);
     });
+    
 
     return () => {
       unsubscribe();
